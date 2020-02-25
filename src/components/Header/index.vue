@@ -28,11 +28,15 @@
       </el-submenu>
       <el-menu-item index="6">测试网&配置设施</el-menu-item>
       <el-menu-item index="7">关于我们-团队</el-menu-item>
-      <el-submenu index="8">
-        <template slot="title">简体中文</template>
-        <el-menu-item index="8-1">简体中文</el-menu-item>
-        <el-menu-item index="8-2">English</el-menu-item>
-      </el-submenu>
+      <el-select v-model="LangValue" placeholder="请选择" size="small" @change="checkoutLang">
+        <el-option
+          v-for="item in LangOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
     </el-menu>
   </div>
 </template>
@@ -42,12 +46,28 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      activeIndex2: '1'
+      LangOptions: [
+        {
+          value: 'zh',
+          label: '简体中文'
+        },
+        {
+          value: 'en',
+          label: 'English'
+        }
+      ],
+      LangValue: '简体中文'
     }
   },
   methods: {
+    // 选中菜单
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
+    },
+
+    // 切换语言
+    checkoutLang (val) {
+      console.log(val)
     }
   }
 }
@@ -57,6 +77,7 @@ export default {
 .header {
   position: relative;
   height: 61px;
+  line-height: 61px;
   .logo {
     position: absolute;
     top: 0;
@@ -76,6 +97,12 @@ export default {
     top: 0;
     margin-left: 200px;
     width: calc(100% - 200px);
+  }
+  .el-select {
+    margin-left: 60px;
+    .el-input__inner {
+      background-color: #001529;
+    }
   }
 }
 </style>
