@@ -53,15 +53,15 @@ export default {
       activeIndex: '1',
       LangOptions: [
         {
-          value: 'zh',
+          value: '简体中文',
           label: '简体中文'
         },
         {
-          value: 'en',
+          value: 'English',
           label: 'English'
         }
       ],
-      LangValue: '简体中文'
+      LangValue: this.$store.state.lang === 'zh-CN' ? '简体中文' : 'English'
     }
   },
   methods: {
@@ -72,12 +72,14 @@ export default {
 
     // 切换语言
     checkoutLang (val) {
-      if (this.$i18n.locale === 'zh-CN') {
+      this.LangValue = val
+      const lang = this.$store.state.lang
+      if (lang === 'zh-CN') {
         this.$i18n.locale = 'en-US' // 关键语句
-        console.log(this.$i18n.locale)
+        this.$store.commit('updataLang', 'en-US')
       } else {
         this.$i18n.locale = 'zh-CN' // 关键语句
-        console.log(this.$i18n.locale)
+        this.$store.commit('updataLang', 'zh-CN')
       }
     }
   }
