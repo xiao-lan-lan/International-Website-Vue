@@ -15,20 +15,25 @@
       text-color="#98a0a8"
       active-text-color="#fff"
     >
-      <el-menu-item index="1">首页</el-menu-item>
-      <el-menu-item index="2">主网启动</el-menu-item>
-      <el-menu-item index="3">经济与治理</el-menu-item>
-      <el-menu-item index="4">开发者</el-menu-item>
+      <el-menu-item index="1">{{ $t("lang.首页") }}</el-menu-item>
+      <el-menu-item index="2">{{ $t("lang.主网启动") }}</el-menu-item>
+      <el-menu-item index="3">{{ $t("lang.经济与治理") }}</el-menu-item>
+      <el-menu-item index="4">{{ $t("lang.开发者") }}</el-menu-item>
       <el-submenu index="5">
-        <template slot="title">工具产品</template>
-        <el-menu-item index="5-1">浏览器</el-menu-item>
-        <el-menu-item index="5-2">钱包APP</el-menu-item>
-        <el-menu-item index="5-3">Web钱包</el-menu-item>
-        <el-menu-item index="5-4">浏览器插件</el-menu-item>
+        <template slot="title">{{ $t("lang.工具产品") }}</template>
+        <el-menu-item index="5-1">{{ $t("lang.浏览器") }}</el-menu-item>
+        <el-menu-item index="5-2">{{ $t("lang.钱包APP") }}</el-menu-item>
+        <el-menu-item index="5-3">{{ $t("lang.Web钱包") }}</el-menu-item>
+        <el-menu-item index="5-4">{{ $t("lang.浏览器插件") }}</el-menu-item>
       </el-submenu>
-      <el-menu-item index="6">测试网&配置设施</el-menu-item>
-      <el-menu-item index="7">关于我们-团队</el-menu-item>
-      <el-select v-model="LangValue" placeholder="请选择" size="small" @change="checkoutLang">
+      <el-menu-item index="6">{{ $t("lang.测试网&配置设施") }}</el-menu-item>
+      <el-menu-item index="7">{{ $t("lang.关于我们-团队") }}</el-menu-item>
+      <el-select
+        v-model="LangValue"
+        placeholder="请选择"
+        size="small"
+        @change="checkoutLang"
+      >
         <el-option
           v-for="item in LangOptions"
           :key="item.value"
@@ -67,7 +72,13 @@ export default {
 
     // 切换语言
     checkoutLang (val) {
-      console.log(val)
+      if (this.$i18n.locale === 'zh-CN') {
+        this.$i18n.locale = 'en-US' // 关键语句
+        console.log(this.$i18n.locale)
+      } else {
+        this.$i18n.locale = 'zh-CN' // 关键语句
+        console.log(this.$i18n.locale)
+      }
     }
   }
 }
@@ -82,9 +93,9 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 50px;
-    padding-left: 80px;
+    width: 100px;
+    height: 52px;
+    padding-left: 30px;
     padding-top: 10px;
     background-color: #001529;
     img {
@@ -95,11 +106,12 @@ export default {
   .el-menu {
     position: absolute;
     top: 0;
-    margin-left: 200px;
-    width: calc(100% - 200px);
+    margin-left: 100px;
+    width: calc(100% - 100px);
   }
   .el-select {
-    margin-left: 60px;
+    margin-left: 40px;
+    width: 120px;
     .el-input__inner {
       background-color: #001529;
     }

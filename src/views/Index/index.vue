@@ -1,5 +1,5 @@
 <template>
-  <div>首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页</div>
+  <div>{{$t("lang.首页")}}</div>
 </template>
 
 <script>
